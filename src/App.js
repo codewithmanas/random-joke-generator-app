@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import { useRef, useState } from 'react';
 import './App.css';
+import useRandomJoke from './useRandomJoke';
 
 function App() {
+  const userInputRef = useRef(null);
+
+  const [userInput, setUserInput] = useState("dev");
+
+  const joke = useRandomJoke(userInput);
+
+  const generateJoke = e => {
+    e.preventDefault();
+    if(userInputRef.current.value !== ""){
+      setUserInput(userInputRef.current.value);
+    }
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+    <h1>Random Joke Generator</h1>
+    <p>{joke}</p>
+
+    <form>
+      <input placeholder="Enter any category from the list below."
+      // value={userInput} onChange={(e) => setUserInput(e.target.value)} 
+      ref={userInputRef}
+      />
+    </form>
+    <button onClick={generateJoke}>Generate Joke</button>
+    <p><b>categories : </b> ["animal","career","celebrity","dev","explicit","fashion","food",<br />"history","money","movie","music","political","religion","science","sport","travel"]</p>
+      
     </div>
   );
 }
