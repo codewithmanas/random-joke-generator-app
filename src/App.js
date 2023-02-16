@@ -30,6 +30,10 @@ function App() {
     <button onClick={generateJoke}>Generate Joke</button>
     <p><b>categories : </b> ["animal","career","celebrity","dev","explicit","fashion","food",<br />"history","money","movie","music","political","religion","science","sport","travel"]</p>
       
+      <footer className="footer__section container">
+        <small>2023 © copyright, build with ❤ by <a href="https://github.com/codewithmanas">codewithmanas</a></small>
+      </footer>
+
     </div>
   );
 }
